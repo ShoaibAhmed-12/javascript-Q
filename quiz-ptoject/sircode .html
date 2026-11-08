@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collection - Filter & Sort</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="antialiased">
+    <div class="grid grid-cols-12 h-full gap-3 px-5">
+      <!-- Sidebar Filters -->
+      <div class="col-span-2 space-y-4 px-2 mt-5">
+        <!-- Category Filter -->
+        <div
+          class="h-42 p-5 space-y-2 panel border rounded-lg"
+          id="categoryFilter"
+        >
+          <!-- Category checkboxes will be inserted here -->
+        </div>
+
+        <!-- Price Filter -->
+        <div
+          class="h-20 p-5 py-8 space-y-2 panel border rounded-lg"
+          id="priceFilter"
+        >
+          <!-- Price range slider will be inserted here -->
+        </div>
+
+        <!-- Rating Filter -->
+        <div
+          class="h-48 p-5 space-y-2 panel border rounded-lg"
+          id="ratingFilter"
+        >
+          <!-- Rating options will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-span-10 pt-3">
+        <!-- Applied Filters and Sort -->
+        <div class="grid grid-cols-12 items-start gap-3">
+          <div class="col-span-9" id="appliedFilters">
+            <!-- Applied filter chips will be inserted here -->
+          </div>
+          <div class="col-span-3">
+            <div class="flex items-center justify-end gap-3">
+              <button
+                id="themeToggle"
+                class="control border text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-neutral-600 flex items-center gap-2"
+                title="Toggle theme"
+              >
+                <span id="themeIcon">🌙</span>
+                <span class="hidden sm:inline">Theme</span>
+              </button>
+              <div class="flex items-center gap-2">
+                <label for="itemsPerPageSelect" class="text-sm muted"
+                  >Items</label
+                >
+                <select
+                  id="itemsPerPageSelect"
+                  class="control border text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-neutral-600"
+                >
+                  <option value="4">4</option>
+                  <option value="8">8</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+              <div class="flex items-center gap-2">
+                <label for="sortSelect" class="text-sm muted">Sort</label>
+                <select
+                  id="sortSelect"
+                  class="control border text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-neutral-600"
+                >
+                  <option value="RatingHighToLow">Rating High to Low</option>
+                  <option value="RatingLowToHigh">Rating Low to High</option>
+                  <option value="PriceHighToLow">Price High to Low</option>
+                  <option value="PriceLowToHigh">Price Low to High</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-b border-neutral-800 py-1"></div>
+        <div id="resultsCount" class="text-sm text-gray-400 mt-2"></div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-12 gap-4 mt-4" id="productsGrid">
+          <!-- Product cards will be inserted here -->
+        </div>
+        <div
+          id="pagination"
+          class="mt-6 flex items-center justify-center gap-2"
+        ></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
