@@ -1,14 +1,110 @@
+class User {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+    this.role = "User";
+  }
+
+  login() {
+    console.log("User Login");
+  }
+
+  logout() {
+    console.log("User Logout");
+  }
+
+  viewProfile() {
+    console.log("Profile Viewed");
+  }
+
+  updateProfile() {
+    console.log("Profile Updated");
+  }
+}
+
+class Admin extends User {
+  constructor(name, email) {
+    super(name, email);
+    this.role = "Admin";
+  }
+
+  addUser() {
+    console.log("User Added");
+  }
+
+  deleteUser() {
+    console.log("User Deleted");
+  }
+
+  editUser() {
+    console.log("User Edited");
+  }
+
+  manageUsers() {
+    console.log("Managing Users");
+  }
+
+  viewDashboard() {
+    console.log("Admin Dashboard");
+  }
+}
+
+// User Object
+const userOne = new User("Ali", "ali@gmail.com");
+console.log(userOne);
+
+// Admin Object
+const adminOne = new Admin("Asad", "asad@gmail.com");
+console.log(adminOne);
+
+adminOne.addUser();
+adminOne.deleteUser();
+adminOne.editUser();
+adminOne.manageUsers();
+adminOne.viewDashboard();
+
+// class user {
+//   constructor(name, email) {
+//     this.name = name;
+//     this.email = email;
+//   }
+//   login() {
+//     console.log("!Login");
+//   }
+//   logout() {
+//     console.log("!Logout");
+//   }
+// }
+
+// const userOne = new user("User", "Ali", "ali@gmail.com");
+// console.log(userOne)
+
+// class admin {
+//   constructor(name, email) {
+//     this.name = name;
+//     this.email = email;
+//   }
+//   login() {
+//     console.log("!Login");
+//   }
+//   logout() {
+//     console.log("!Logout");
+//   }
+// }
+
+// const userTow = new admin( "Admin", "Ali", "ali@gmail.com");
+// console.log(userTow);
+
 // const h1 = document.querySelector("h1")
 // const list = document.querySelector("#list")
 // const button = document.querySelector("#button")
-
 
 // list.addEventListener('click',function(e){
 //   e.target.style.textDecoration = "Line-through"
 // })
 
 // button.addEventListener('click',function(e){
-  
+
 //   })
 // const h1 = document.querySelector("h1");
 // const list = document.querySelector("#list");
@@ -20,11 +116,11 @@
 
 // button.addEventListener("click", function (e) {
 //   const li = document.createElement("li");
-  
+
 //   li.textContent = "Item4";
 
 //   list.appendChild(li);
-  
+
 // });
 // const h1 = document.querySelector("h1");
 // const list = document.querySelector("#list");
@@ -90,7 +186,6 @@
 // const button = document.querySelector("#button");
 // const input = document.querySelector("#input");
 
-
 // // Function jo har li ko functionality dega
 // function addEvents(li) {
 
@@ -109,14 +204,12 @@
 //     }
 //   });
 
-
 //   // Delete button
 //   const deleteButton = li.querySelector(".delete");
 
 //   deleteButton.addEventListener("click", function () {
 //     li.remove();
 //   });
-
 
 //   // Rename button
 //   const renameButton = li.querySelector(".rename");
@@ -133,14 +226,12 @@
 //   });
 // }
 
-
 // // Existing items ko functionality dena
 // const items = document.querySelectorAll("#list li");
 
 // items.forEach(function (li) {
 //   addEvents(li);
 // });
-
 
 // // New item add karna
 // button.addEventListener("click", function () {
@@ -174,7 +265,6 @@
 //   if(e.target.classList.contains('del')){
 //     e.target.parentElement.remove()
 
-    
 //   }
 //   if(e.target.nodeName ==='Li'){
 //     e.target.style.textDecoration = "line-through"
@@ -190,7 +280,6 @@
 //   button.setAttribute("class","del")
 //   div.appendChild(li);
 //   div.appendChild(button)
-  
 
 //   div.classList.add("item")
 //   ul.appendChild(div)
@@ -203,57 +292,44 @@ const addTodo = document.querySelector("#add");
 const addInput = document.querySelector("#addInput");
 
 addTodo.addEventListener("click", function () {
+  if (addInput.value.trim() === "") {
+    alert("Please enter an item!");
+    return;
+  }
+  const div = document.createElement("div");
+  div.classList.add("item");
 
-    if (addInput.value.trim() === "") {
-        alert("Please enter an item!");
-        return;
-    }  
-    const div = document.createElement("div");
-    div.classList.add("item");
-
-    const li = document.createElement("li");
-    li.textContent = addInput.value;
-    const renameBtn = document.createElement("button");
-    renameBtn.textContent = "Rename";
-    renameBtn.classList.add("rename");
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.classList.add("del");   
-    div.appendChild(li);
-    div.appendChild(renameBtn);
-    div.appendChild(deleteBtn);  
-    ul.appendChild(div); 
-    addInput.value = "";
+  const li = document.createElement("li");
+  li.textContent = addInput.value;
+  const renameBtn = document.createElement("button");
+  renameBtn.textContent = "Rename";
+  renameBtn.classList.add("rename");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.classList.add("del");
+  div.appendChild(li);
+  div.appendChild(renameBtn);
+  div.appendChild(deleteBtn);
+  ul.appendChild(div);
+  addInput.value = "";
 });
 ul.addEventListener("click", function (e) {
-    if (e.target.classList.contains("del")) {
-        e.target.parentElement.remove();
+  if (e.target.classList.contains("del")) {
+    e.target.parentElement.remove();
+  }
+  if (e.target.classList.contains("rename")) {
+    const item = e.target.parentElement;
+    const li = item.querySelector("li");
+    const newName = prompt("Enter new name:", li.textContent);
+    if (newName !== null && newName.trim() !== "") {
+      li.textContent = newName.trim();
     }
-    if (e.target.classList.contains("rename")) {  
-        const item = e.target.parentElement;
-       const li = item.querySelector("li");      
-        const newName = prompt("Enter new name:", li.textContent);      
-        if (newName !== null && newName.trim() !== "") {
-            li.textContent = newName.trim();
-        }
-    }  
-    if (e.target.tagName === "LI") {
-        if (e.target.style.textDecoration === "line-through") {
-            e.target.style.textDecoration = "none";
-        } else {
-            e.target.style.textDecoration = "line-through";
-        }
+  }
+  if (e.target.tagName === "LI") {
+    if (e.target.style.textDecoration === "line-through") {
+      e.target.style.textDecoration = "none";
+    } else {
+      e.target.style.textDecoration = "line-through";
     }
-
+  }
 });
-
-
-
-
- 
-
-
-
-
-
-
